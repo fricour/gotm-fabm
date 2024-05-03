@@ -38,3 +38,7 @@ Then, go in the `models` directory (`cd models`) and create a folder named `rbin
 
 From your `gotm` executable (it should be inside your `build` directory, see the build instructions), you can execute `./gotm gotm.yaml`. This will run a simulation and output a `voet.nc` file that you can inspect with ncview. Note that you can modify the output's filename and other specifications inside that yaml file. Similarly, you can modify initial concentrations and parameters inside the `fabm.yaml` file.
 
+# Modify the biogeochemical code
+
+If you modify the BGC code (here there is only `base_model.F90` and `dissolution.F90`, you need to build GOTM again. For this, you can copy the `build.sh` file, modify the path to your GOTM code and execute this file. Once it is done, if there are no errors, you can run a new simulation.
+
