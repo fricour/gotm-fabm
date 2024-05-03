@@ -1,0 +1,19 @@
+# see inspiration for coupling ("modularization") here: https://github.com/BoldingBruggeman/fabm-pisces/blob/master/testcases/fabm.yaml
+instances:
+  base_model:
+    model: rbins/base_model
+    initialization:
+      p: 200 # concentration (mmolC m-3)
+      d: 100 # concentration (mmolC m-3)
+      pbenthos: 50 # concentration of p in the benthic layer (mmolC m-3)
+    parameters:
+      w_p: -1.0 # sinking speed (m day-1), should be <0
+      k_f: 0.2 # fixation rate (day-1)
+      k_b: 0.5 #  benthic dissolution rate (day-1)
+  dissolution:
+    model: rbins/dissolution
+    coupling:
+      p: base_model/p
+      d: base_model/d
+    parameters:
+      k_d: 0.3 # dissolution rate (day-1)
