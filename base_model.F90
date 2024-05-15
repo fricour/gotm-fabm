@@ -29,8 +29,6 @@ contains
     real(rk), parameter :: d_per_s = 1.0_rk/86400.0_rk ! example taken from https://github.com/fabm-model/fabm/blob/master/src/models/examples/npzd/phy.F90 (note: better declare it before the call to self%register_implemented_routine((/source_do/))
     real(rk) :: w_p ! sinking speed
 
-    call self%register_implemented_routines((/source_do/))
- 
     ! parameters
     call self%get_parameter(self%k_f, 'k_f', 'day-1', 'fixation rate', default=0.2_rk, scale_factor=d_per_s)
     call self%get_parameter(w_p, 'w_p', 'm day-1', 'vertical velocity (<0 for sinking)', default=-1.0_rk, scale_factor=d_per_s)
@@ -96,7 +94,7 @@ contains
          _GET_HORIZONTAL_(self%id_pbenthos, pbenthos)
 
          ! send rates of change to FABM
-         _ADD_BOTTOM_SOURCE_(self%id_pbenthos, -2*pbenthos)
+         _ADD_BOTTOM_SOURCE_(self%id_pbenthos, 0.1)
         !_ADD_BOTTOM_FLUX_(self%id_p, 5) ! just to check something, might be used later on
      _BOTTOM_LOOP_END_
 

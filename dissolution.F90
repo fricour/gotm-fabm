@@ -22,8 +22,6 @@ contains
     class (type_rbins_dissolution), intent(inout), target :: self
     integer,                  intent(in)            :: configunit
 
-    call self%register_implemented_routines((/source_do/))
-
     call self%get_parameter(self%k_d, 'k_d', 'day-1', 'dissolution rate', default=0.3_rk, scale_factor=1.0_rk/86400.0_rk)
     
     ! we create a dependency for a coupling in fabm.yaml with the "base_model"
